@@ -158,11 +158,20 @@ def search_by_ingredients(): ## Поиск по составу
 
     def show_menu_ingred():
         global frame_menu_ingred, listbox_ingred, menu_ingred, butt_ingred, message_entry_ingred_str
+        try:
+            frame_menu_ingred.destroy()
+        except:##loging
+            pass
+        try:
+            butt_ingred.destroy()
+        except:
+            pass
         frame_menu_ingred = Frame()
         frame_menu_ingred.pack(fill=X)
         listbox_ingred = Listbox(frame_menu_ingred, font=("Century Gothic", 18) )
         message_entry_ingred_str=message_entry_ingred.get().lower().replace(" ", "")
         menu_ingred =databasefunctions.menu_ingred(message_entry_ingred_str).split(", ")
+
         if (menu_ingred==[""]):
             menu_ingred=["Данного продукта" ,"не найдено"]
             try:
@@ -171,8 +180,10 @@ def search_by_ingredients(): ## Поиск по составу
                 pass
             try:
                 frame_find_ingred.destroy()
-            except:
-                pass    
+            except:##loging
+                pass
+        
+            
         else:
             butt_ingred=Button(first_window, image=buttom_find,command=show_message_ingred)
             butt_ingred.place(x=int(koord_w_frame1*1.5)+width_of_frame1-int(size_of_butt/2), y=koord_h_frame1+int(height_of_frame1/2)-int(size_of_butt/2),width=size_of_butt, height=size_of_butt)
