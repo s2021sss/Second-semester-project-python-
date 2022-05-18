@@ -7,25 +7,38 @@ import databasefunctions
 import sqlite3 as sq
 
 
-def destroy_first_window(): ## Удаляет начальный экран, то есть начальную кнопку и вызывает функцию для показа экрана выбора по составу или по блюду
+
+def destroy_first_window():
+    """
+    Удаляет начальный экран, то есть начальную кнопку и вызывает функцию для показа экрана выбора по составу или по блюду
+    """
     first_button_continue.destroy()
     
     first_choice()
 
-def destroy_choiceByingredientsAndMeals_1(): ## Разрушает кнопки с выбором по составу или по блюду и вызывает функцию для поиска по составу
+def destroy_choiceByingredientsAndMeals_1(): 
+    """
+    Разрушает кнопки с выбором по составу или по блюду и вызывает функцию для поиска по составу
+    """
     choice_by_ingredients.destroy()
     choice_by_meals.destroy()
     
     search_by_ingredients()
 
-def destroy_choiceByingredientsAndMeals_2(): ## Разрушает кнопки с выбором по составу или по блюду и вызывает функцию для поиска по приему пищи
+def destroy_choiceByingredientsAndMeals_2(): 
+    """
+    Разрушает кнопки с выбором по составу или по блюду и вызывает функцию для поиска по приему пищи
+    """
     choice_by_ingredients.destroy()
     choice_by_meals.destroy()
     
     search_by_meals()
 
 
-def destroy_search_by_ingredients(): ## Разрушает кнопки с экрана поиска по составу и возвращает на экран выбора по составу или по блюду
+def destroy_search_by_ingredients(): 
+    """
+    Разрушает кнопки с экрана поиска по составу и возвращает на экран выбора по составу или по блюду
+    """
     message_entry_ingred.destroy()
     return_ingred.destroy()
     message_button_ingred.destroy()
@@ -40,11 +53,13 @@ def destroy_search_by_ingredients(): ## Разрушает кнопки с эк�
     except:
         pass
     
-    
     first_choice()
 
 
-def destroy_search_by_zavtrak(): ## Разрушает экран поиска по завтракам и возвращает на экран выбора по составу или по блюду
+def destroy_search_by_zavtrak(): 
+    """
+    Разрушает экран поиска по завтракам и возвращает на экран выбора по составу или по блюду
+    """
     return_zavtrak.destroy()
 
     listbox_zavtrak.destroy()
@@ -59,7 +74,10 @@ def destroy_search_by_zavtrak(): ## Разрушает экран поиска �
     first_choice()
 
 
-def destroy_search_by_obed(): ## Разрушает экран поиска по обедам и возвращает на экран выбора по составу или по блюду
+def destroy_search_by_obed():  
+    """
+    Разрушает экран поиска по обедам и возвращает на экран выбора по составу или по блюду
+    """
     return_obed.destroy()
 
     listbox_obed.destroy()
@@ -71,11 +89,13 @@ def destroy_search_by_obed(): ## Разрушает экран поиска по
     except:
         pass
 
-
     first_choice()
 
 
-def destroy_search_by_uzhin(): ## Разрушает экран поиска по ужинам и возвращает на экран выбора по составу или по блюду
+def destroy_search_by_uzhin(): 
+    """
+    Разрушает экран поиска по ужинам и возвращает на экран выбора по составу или по блюду
+    """
     return_uzhin.destroy()
 
     listbox_uzhin.destroy()
@@ -87,12 +107,13 @@ def destroy_search_by_uzhin(): ## Разрушает экран поиска п�
     except:
         pass
 
-
-    
     first_choice()
 
 
-def destroy_search_by_desert(): ## Разрушает экран поиска по десертам и возвращает на экран выбора по составу или по блюду
+def destroy_search_by_desert(): 
+    """
+    Разрушает экран поиска по десертам и возвращает на экран выбора по составу или по блюду
+    """
     return_desert.destroy()
 
     listbox_desert.destroy()
@@ -104,13 +125,15 @@ def destroy_search_by_desert(): ## Разрушает экран поиска п
     except:
         pass
 
-    
     first_choice()
 
 
 
 
-def first_choice(): ## Экран первого выбора по составу или по блюду
+def first_choice():
+    """
+    Функция, которая показывает экран первого выбора по составу или по блюду
+    """
     global choice_by_ingredients_img,choice_by_meals_img, choice_by_ingredients, choice_by_meals
 
     choice_by_ingredients = Button(first_window, image=choice_by_ingredients_img, height=height_win, width=width_win/2, command = destroy_choiceByingredientsAndMeals_1)
@@ -121,9 +144,15 @@ def first_choice(): ## Экран первого выбора по состав�
 
 
     
-def search_by_ingredients(): ## Поиск по составу
+def search_by_ingredients(): 
+    """
+    Функция поиска по составу
+    """
     global bg_ingredients, message_ingred, return_ingred, message_button_ingred, message_entry_ingred
-
+    
+    """
+    Функция, которая выдает репет выбранного блюда
+    """
     def show_message_ingred():
         global frame_find_ingred, txt_find_ingred, find_ingred, input_ingred, flag_ingred, input_text_ingred
         flag_ingred=False
@@ -155,7 +184,9 @@ def search_by_ingredients(): ## Поиск по составу
         txt_find_ingred.insert(INSERT, "\nРецепт: \n", 'boldtext')
         txt_find_ingred.insert(INSERT, str(find_ingred[2]))
 
-
+    """
+    Функция, которая выдает списко блюд по выбранному ингредиенту
+    """
     def show_menu_ingred():
         global frame_menu_ingred, listbox_ingred, menu_ingred, butt_ingred, message_entry_ingred_str
         try:
@@ -207,11 +238,14 @@ def search_by_ingredients(): ## Поиск по составу
     message_button_ingred=Button(first_window, image=buttom_find_big, command=show_menu_ingred)
     message_button_ingred.place(x=int(width_win/3)*2, y=int(height_win*0.10)-int((size_of_butt_big-40)/2), width=size_of_butt_big, height=size_of_butt_big)
     
-    message_button_ingred.bind('<Return>',enter_ingred)
+    message_button_ingred.bind('<Return>', show_message_ingred)
     first_window.bind('<Return>', lambda event=None: message_button_ingred.invoke())
 
     
-def search_by_meals(): ## Поиск по приему пищи 
+def search_by_meals(): 
+    """
+    Функция поиска по приему пищи 
+    """
     global zavtrak_search_img, obed_search_img, uzhin_search_img, desert_search_img, zavtrak_search, obed_search, uzhin_search, desert_search
 
     zavtrak_search = Button(first_window, image=zavtrak_search_img, height=height_win, width=width_win/4, command = destroy_seach_zavrtak)
@@ -227,7 +261,10 @@ def search_by_meals(): ## Поиск по приему пищи
     desert_search.place(relx=0.875, rely=0.5, anchor=CENTER)
 
 
-def destroy_seach_zavrtak(): ## Разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по завтраку
+def destroy_seach_zavrtak(): 
+    """
+    Функция разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по завтраку
+    """
     zavtrak_search.destroy()
     obed_search.destroy()
     uzhin_search.destroy()
@@ -235,7 +272,10 @@ def destroy_seach_zavrtak(): ## Разрушает кнопки выбора з�
 
     zavtrak()
 
-def destroy_seach_obed(): ## Разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по обедам
+def destroy_seach_obed(): 
+    """
+    Функция разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по обедам
+    """
     zavtrak_search.destroy()
     obed_search.destroy()
     uzhin_search.destroy()
@@ -243,7 +283,10 @@ def destroy_seach_obed(): ## Разрушает кнопки выбора зав
 
     obed()
 
-def destroy_seach_uzhin(): ## Разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по ужинам
+def destroy_seach_uzhin(): 
+    """
+    Функция разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по ужинам
+    """
     zavtrak_search.destroy()
     obed_search.destroy()
     uzhin_search.destroy()
@@ -251,7 +294,10 @@ def destroy_seach_uzhin(): ## Разрушает кнопки выбора за�
 
     uzhin()
 
-def destroy_seach_desert(): ## Разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по десертам
+def destroy_seach_desert(): 
+    """
+    Функция разрушает кнопки выбора завтрак/обед/ужин/десерт и открывает экран по поиску по десертам
+    """
     zavtrak_search.destroy()
     obed_search.destroy()
     uzhin_search.destroy()
@@ -259,9 +305,15 @@ def destroy_seach_desert(): ## Разрушает кнопки выбора за
 
     desert()
     
-def zavtrak(): ## Поиск по завтраку 
+def zavtrak(): 
+    """
+    Функция поиска по завтраку 
+    """
     global bg_zavtrak, return_zavtrak,  frame_menu_zavtrak, listbox_zavtrak, menu_zavtrak, butt_zavtrak 
-
+    
+    """
+    Функция, которая по названию выбранного блюда выдает его рецепт
+    """
     def show_message_zavtrak():
         global frame_find_zavtrak, txt_find_zavtrak, find_zavtrak, input_text, flag_zavtrak, input_text_zavtrak
         flag_zavtrak=False
@@ -297,6 +349,9 @@ def zavtrak(): ## Поиск по завтраку
             txt_find_zavtrak.tag_config('boldtext', font=("Century Gothic", 18 ,'bold'))
             txt_find_zavtrak.insert(INSERT, find_zavtrak, 'boldtext')
 
+    """
+    Функция, которая вызывает поиск 
+    """ 
     def enter_zavtrak(event=None):
         show_message_zavtrak()
 
@@ -317,16 +372,21 @@ def zavtrak(): ## Поиск по завтраку
 
     butt_zavtrak=Button(first_window, image=buttom_find,command=show_message_zavtrak)
     butt_zavtrak.place(x=int(koord_w_frame_NEW*1.5)+width_of_frame_NEW-int(size_of_butt/2), y=koord_h_frame_NEW+int(height_of_frame_NEW/2)-int(size_of_butt/2),width=size_of_butt, height=size_of_butt)
-    butt_zavtrak.bind('<Return>', enter_zavtrak)
+    butt_zavtrak.bind('<Return>', show_message_zavtrak)
     first_window.bind('<Return>', lambda event=None: butt_zavtrak.invoke())
     
     first_canvas.create_window(koord_w_frame_NEW, koord_h_frame_NEW, anchor = NW, window = frame_menu_zavtrak, width = width_of_frame_NEW, height = height_of_frame_NEW)
 
     
-def obed(): ## Поиск по обеду 
+def obed(): 
+    """
+    Функция поиска по обеду 
+    """
     global bg_obed, return_obed,  frame_menu_obed, listbox_obed, menu_obed, butt_obed 
-
-
+    
+    """
+    Функция, которая по названию выбранного блюда выдает его рецепт
+    """
     def show_message_obed():
         global frame_find_obed, txt_find_obed, find_obed, input_text, flag_obed, input_text_obed
         flag_obed=False
@@ -360,7 +420,9 @@ def obed(): ## Поиск по обеду
         else:
             txt_find_obed.tag_config('boldtext', font=("Century Gothic", 18 ,'bold'))
             txt_find_obed.insert(INSERT, find_obed, 'boldtext')
-        
+    """
+    Функция, которая вызывает поиск 
+    """ 
     def enter_obed(event=None):
         show_message_obed()
 
@@ -381,7 +443,7 @@ def obed(): ## Поиск по обеду
 
     butt_obed=Button(first_window, image=buttom_find,command=show_message_obed)
     butt_obed.place(x=int(koord_w_frame_NEW*1.5)+width_of_frame_NEW-int(size_of_butt/2), y=koord_h_frame_NEW+int(height_of_frame_NEW/2)-int(size_of_butt/2),width=size_of_butt, height=size_of_butt)
-    butt_obed.bind('<Return>',enter_obed)
+    butt_obed.bind('<Return>', show_message_obed)
     first_window.bind('<Return>', lambda event=None: butt_obed.invoke())
     
     first_canvas.create_window(koord_w_frame_NEW, koord_h_frame_NEW, anchor = NW, window = frame_menu_obed, width = width_of_frame_NEW, height = height_of_frame_NEW)
@@ -389,9 +451,15 @@ def obed(): ## Поиск по обеду
 
 
 
-def uzhin(): ## Поиск по ужину 
+def uzhin(): 
+    """
+    Функция поиска по ужину 
+    """
     global bg_uzhin, return_uzhin,  frame_menu_uzhin, listbox_uzhin, menu_uzhin, butt_uzhin 
 
+    """
+    Функция, которая по названию выбранного блюда выдает его рецепт
+    """
     def show_message_uzhin():
         global frame_find_uzhin, txt_find_uzhin, find_uzhin, input_text, flag_uzhin, input_text_uzhin
         flag_uzhin=False
@@ -427,6 +495,9 @@ def uzhin(): ## Поиск по ужину
             txt_find_uzhin.tag_config('boldtext', font=("Century Gothic", 18 ,'bold'))
             txt_find_uzhin.insert(INSERT, find_uzhin, 'boldtext')
 
+    """
+    Функция, которая вызывает поиск 
+    """ 
     def enter_uzhin(event=None):
         show_message_uzhin()
 
@@ -447,15 +518,21 @@ def uzhin(): ## Поиск по ужину
 
     butt_uzhin=Button(first_window, image=buttom_find,command=show_message_uzhin)
     butt_uzhin.place(x=int(koord_w_frame_NEW*1.5)+width_of_frame_NEW-int(size_of_butt/2), y=koord_h_frame_NEW+int(height_of_frame_NEW/2)-int(size_of_butt/2),width=size_of_butt, height=size_of_butt)
-    butt_uzhin.bind('<Return>',enter_uzhin)
+    butt_uzhin.bind('<Return>', show_message_uzhin)
     first_window.bind('<Return>', lambda event=None: butt_uzhin.invoke())
     
     first_canvas.create_window(koord_w_frame_NEW, koord_h_frame_NEW, anchor = NW, window = frame_menu_uzhin, width = width_of_frame_NEW, height = height_of_frame_NEW)
 
     
-def desert(): ## Поиск по десертам 
+def desert(): 
+    """
+    Функция поиска по десертам
+    """
     global bg_desert, return_desert,  frame_menu_desert, listbox_desert, menu_desert, butt_desert 
 
+    """
+    Функция, которая по названию выбранного блюда выдает его рецепт
+    """
     def show_message_desert():
         global frame_find_desert, txt_find_desert, find_desert, input_text, flag_desert
         flag_desert=False
@@ -491,8 +568,9 @@ def desert(): ## Поиск по десертам
             txt_find_desert.tag_config('boldtext', font=("Century Gothic", 18 ,'bold'))
             txt_find_desert.insert(INSERT, find_desert, 'boldtext')
 
-
-
+    """
+    Функция, которая вызывает поиск 
+    """ 
     def enter_desert(event=None):
         show_message_desert()
 
@@ -513,14 +591,16 @@ def desert(): ## Поиск по десертам
 
     butt_desert=Button(first_window, image=buttom_find,command=show_message_desert)
     butt_desert.place(x=int(koord_w_frame_NEW*1.5)+width_of_frame_NEW-int(size_of_butt/2), y=koord_h_frame_NEW+int(height_of_frame_NEW/2)-int(size_of_butt/2),width=size_of_butt, height=size_of_butt)
-    butt_desert.bind('<Return>',enter_desert)
+    butt_desert.bind('<Return>', show_message_desert)
     first_window.bind('<Return>', lambda event=None: butt_desert.invoke())
     
     first_canvas.create_window(koord_w_frame_NEW, koord_h_frame_NEW, anchor = NW, window = frame_menu_desert, width = width_of_frame_NEW, height = height_of_frame_NEW)
 
 
 
-
+"""
+Основной экран
+"""
 first_window = Tk()
 
 first_window.title ("Подбор блюд и рецептов по ингредиентам")
@@ -529,12 +609,16 @@ first_window.attributes('-fullscreen', True)
 first_canvas=Canvas(first_window)
 first_canvas.pack(fill="both", expand=True)
 
-#Измеряет длину и ширину экрана
+"""
+Измерение длины и ширины экрана
+"""
 width_win=first_window.winfo_screenwidth()
 height_win=first_window.winfo_screenheight()
 
-#Фоновые картинки
 
+"""
+Импорт и изменение размеров фоновых картинок
+"""
 first_buttom_img_file=Image.open("Foody.png")
 first_buttom_img_resize=first_buttom_img_file.resize((width_win,height_win))
 first_buttom_img=ImageTk.PhotoImage(first_buttom_img_resize)
@@ -586,11 +670,15 @@ desert_search_img_resize=desert_search_img_file.resize((int(width_win/4),height_
 desert_search_img=ImageTk.PhotoImage(desert_search_img_resize)
 
 
-##Размер кнопки поиска
+"""
+Определяется рахмер кнопки поиска
+"""
 size_of_butt=int(width_win*0.05*0.65)
 size_of_butt_big=100
 
-##Кнопка для поиска
+"""
+Фоновая картинка для кнопки поиска
+"""
 img = Image.open('poisk.png')
 img_resize_small = img.resize((size_of_butt, size_of_butt))
 img_resize_big = img.resize((size_of_butt_big, size_of_butt_big))
@@ -598,17 +686,20 @@ img_resize_big = img.resize((size_of_butt_big, size_of_butt_big))
 buttom_find=ImageTk.PhotoImage(img_resize_small)
 buttom_find_big=ImageTk.PhotoImage(img_resize_big)
 
-##Кнопка для возращения назад 
+"""
+Фоновая картинка для кнопки назад
+"""
 back = Image.open("back.png")
 back_resize=back.resize((50, 50))
 buttom_back = ImageTk.PhotoImage(back_resize)
 
-##КООРДИНАТЫ ОКОН ПРИ ПОИСКЕ ПО ИНГРИДИЕНТАМ
+"""
+Координаты окон при поиске по ингридиентам
+"""
 koord_w_frame1=int(width_win*0.05)
 koord_h_frame1=int(height_win*0.25)
 width_of_frame1=int(koord_h_frame1*1.5)
 height_of_frame1= height_win-koord_h_frame1-koord_w_frame1
-
 
 koord_w_frame2=width_of_frame1+2*koord_w_frame1
 koord_h_frame2=int(height_win*0.25)
@@ -616,7 +707,9 @@ width_of_frame2= width_win - 3*koord_w_frame1 - width_of_frame1
 height_of_frame2= height_win-koord_h_frame1-koord_w_frame1
 
 
-##КООРДИНАТЫ ОКОН ПРИ ПОИСКЕ ПО БЛЮДУ
+"""
+Координаты окон при поиске по блюду
+"""
 koord_w_frame_NEW=int(width_win*0.05)
 koord_h_frame_NEW=int(height_win*0.15)
 width_of_frame_NEW=int(koord_h_frame_NEW*3)
