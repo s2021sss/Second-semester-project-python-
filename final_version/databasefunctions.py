@@ -1,8 +1,9 @@
 import sqlite3 as sq
-"""
-Функция осуществляет поиск по базе данных и выдает названия завтраков
-"""
+
 def name_zavtrak():
+    """
+    Функция осуществляет поиск по базе данных и выдает названия завтраков
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
         str_zavtrak=""
@@ -10,10 +11,11 @@ def name_zavtrak():
         for result in cur:
              str_zavtrak=str_zavtrak+str(result[0])+", "
         return str_zavtrak
-"""
-Функция выдает состав и рецепт выбранного завтрака
-"""
+
 def choice_zavtrak(choice):
+    """
+    Функция выдает состав и рецепт выбранного завтрака
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
    
@@ -24,10 +26,11 @@ def choice_zavtrak(choice):
                 recipe_of_choice=result
         return recipe_of_choice
 
-"""
-Функция осуществляет поиск по базе данных и выдает названия обедов
-"""
+
 def name_obed():
+    """
+    Функция осуществляет поиск по базе данных и выдает названия обедов
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
         str_zavtrak=""
@@ -35,10 +38,11 @@ def name_obed():
         for result in cur:
              str_zavtrak=str_zavtrak+str(result[0])+", "
         return str_zavtrak
-"""
-Функция выдает состав и рецепт выбранного обеда
-"""
+
 def choice_obed(choice):
+    """
+    Функция выдает состав и рецепт выбранного обеда
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
    
@@ -49,10 +53,11 @@ def choice_obed(choice):
                 recipe_of_choice=result
         return recipe_of_choice
 
-"""
-Функция осуществляет поиск по базе данных и выдает названия ужинов
-"""
+
 def name_uzhin():
+    """
+    Функция осуществляет поиск по базе данных и выдает названия ужинов
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
         str_zavtrak=""
@@ -60,10 +65,11 @@ def name_uzhin():
         for result in cur:
              str_zavtrak=str_zavtrak+str(result[0])+", "
         return str_zavtrak
-"""
-Функция выдает состав и рецепт выбранного ужина
-"""    
+  
 def choice_uzhin(choice):
+    """
+    Функция выдает состав и рецепт выбранного ужина
+    """  
     with sq.connect("recipes") as con:
         cur = con.cursor()
    
@@ -74,10 +80,11 @@ def choice_uzhin(choice):
                 recipe_of_choice=result
         return recipe_of_choice
     
-"""
-Функция осуществляет поиск по базе данных и выдает названия десертов
-"""
+
 def name_desert():
+    """
+    Функция осуществляет поиск по базе данных и выдает названия десертов
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
         str_zavtrak=""
@@ -85,10 +92,11 @@ def name_desert():
         for result in cur:
              str_zavtrak=str_zavtrak+str(result[0])+", "
         return str_zavtrak
-"""
-Функция выдает состав и рецепт выбранного десерта
-"""    
+  
 def choice_desert(choice):
+    """
+    Функция выдает состав и рецепт выбранного десерта
+    """  
     with sq.connect("recipes") as con:
         cur = con.cursor()
    
@@ -98,10 +106,11 @@ def choice_desert(choice):
             if choice in result:
                 recipe_of_choice=result
         return recipe_of_choice
-"""
-Функция осуществляет поиск по базе данных и выдает все блюда, в состав которых входит введенный ингредиент
-"""
+
 def menu_ingred(lst):
+    """
+    Функция осуществляет поиск по базе данных и выдает все блюда, в состав которых входит введенный ингредиент
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
     
@@ -119,10 +128,11 @@ def menu_ingred(lst):
         for result in cur:
             str_ingred=str_ingred+str(result[0])+", "
         return str_ingred
-"""
-Функция выдает состав и рецепт выбранного блюда
-"""
+
 def choice_ingred(choice):
+    """
+    Функция выдает состав и рецепт выбранного блюда
+    """
     with sq.connect("recipes") as con:
         cur = con.cursor()
    
